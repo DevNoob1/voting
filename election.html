@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="election.css">
+<script src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
+<script src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
+<script src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
+<script src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
+
+
+
+    <title>Document</title>
+</head>
+
+<body style="margin: 0%;
+background: linear-gradient(45deg, #ffA500, #fff, #008000);">
+
+    <div class="upper">
+        <div class="election" style="padding-left: 2%;">
+
+            <h1><a href="" style="color: black;"><img
+                        src="https://play-lh.googleusercontent.com/3APi4HdWb0_rhnhAEoyJEYfSemXW9cNbA2VdOCSN7L6wgdjC_oTxLphER647R9PnSCkV=w600-h300-pc0xffffff-pd"
+                        alt="" style="height: 70px;"> <br> ELECTIONS</a></h1>
+        </div>
+           
+        <div class="socials">
+            <a href="https://github.com/DevNoob1" class="fa fa-github"></a> 
+        </div>
+    </div>
+    <div class="mid">
+        <div class="evote" id="vote"><a href="vote.html"><img
+                    src="https://cdn-icons-png.flaticon.com/512/7444/7444530.png" alt="" , style="height: 200px;"><br>
+                <h1 style="text-align: center;">EVOTE</h1>
+            </a>
+        </div>
+        
+            <div id="map" style="width: 50%; height: 400px;"></div>
+
+       
+        <div class="data"><a href="data.html"><img src="https://cdn-icons-png.flaticon.com/512/9901/9901845.png"
+                    style="height:200px;"></img>
+                <h1 style="text-align: center;">
+                    DATA
+                </h1>
+            </a>
+        </div>
+    </div>
+    <div class="bottom">
+        <br><br>
+
+        <br>~ <u>AYUSH</u> ~
+<a href="./login.html">Logout</a>
+    </div>
+<script>
+        function moveMapToBerlin(map) {
+            map.setCenter({ lat: 52.5159, lng: 13.3777 });
+            map.setZoom(14);
+        }
+
+        // Initialize communication with the platform
+        var platform = new H.service.Platform({
+            apikey: 'glOkVfxDF1m-5bi9-BYbF8o_xywa75h8viSm0zfH9K8' // Replace with your HERE API key
+        });
+
+        var defaultLayers = platform.createDefaultLayers();
+
+        // Initialize a map - this map is centered over Europe
+        var map = new H.Map(document.getElementById('map'),
+            defaultLayers.vector.normal.map, {
+                center: { lat: 50, lng: 5 },
+                zoom: 4,
+                pixelRatio: window.devicePixelRatio || 1
+            });
+
+        // Add a resize listener to make sure that the map occupies the whole container
+        window.addEventListener('resize', () => map.getViewPort().resize());
+
+        // Make the map interactive
+        var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
+
+        // Create the default UI components
+        var ui = H.ui.UI.createDefault(map, defaultLayers);
+
+        // Move the map to Berlin when the page loads
+        window.onload = function () {
+            moveMapToBerlin(map);
+            
+            // Define coordinates for multiple places
+            var places = [
+                { lat: 52.5159, lng: 13.3777 },
+                { lat: 52.51, lng: 13.38 },
+                { lat: 52.52, lng: 13.37 },
+                // Add more places as needed
+            ];
+
+            // Add markers for each place
+            places.forEach(function (place) {
+                var marker = new H.map.Marker(place);
+                map.addObject(marker);
+            });
+        };
+    </script>
+
+
+
+</body>
+
+</html>

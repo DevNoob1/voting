@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Election Voting</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin: 0;
+            padding: 20px;
+            color: #fff;
+            background-color: #007bff;
+            text-align: center;
+        }
+
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            padding-top: 40px;
+        }
+
+        li {
+            margin: 10px;
+            width: 200px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        button img {
+            height: 200px;
+        }
+
+        button:hover {
+            background-color: #3e8e41;
+        }
+    </style>
+</head>
+
+<body>
+    <h1><a href="election.html" style="text-decoration: none; color: #fff;">Home</a> / Vote</h1>
+    <h1><u>Current candidates</u></h1>
+    <ul>
+    <li>
+        <button onclick="showAlertNote('Saul Goodman', 'https://upload.wikimedia.org/wikipedia/en/3/34/Jimmy_McGill_BCS_S3.png')">
+            <img src="https://upload.wikimedia.org/wikipedia/en/3/34/Jimmy_McGill_BCS_S3.png" alt="Saul Goodman Image">
+            Saul Goodman
+        </button>
+    </li>
+    
+    <li>
+        <button onclick="showAlertNote('Bruce Lee', 'https://i.pinimg.com/236x/ce/d8/4a/ced84a67302c60bd1abaaf9314064433.jpg')">
+            <img src="https://i.pinimg.com/236x/ce/d8/4a/ced84a67302c60bd1abaaf9314064433.jpg" alt="Bruce Lee Image">
+            Bruce Lee
+        </button>
+    </li>
+    
+    
+    <li>
+        <button onclick="showAlertNote('Noah Liam', 'https://heritagefuneral.com/wp-content/uploads/2023/01/Jim-Kegel-400-%C3%97-533-px.png')">
+            <img src="https://heritagefuneral.com/wp-content/uploads/2023/01/Jim-Kegel-400-%C3%97-533-px.png" alt="Noah Liam Image">
+            Noah Liam
+        </button>
+    </li>
+    <li>
+        <button onclick="showAlertNote('Noah Lee', 'https://www.nlgja.org/2015/wp-content/uploads/sites/5/2015/07/Screen-Shot-2015-02-18-at-4.43.38-PM.png')">
+            <img src="https://www.nlgja.org/2015/wp-content/uploads/sites/5/2015/07/Screen-Shot-2015-02-18-at-4.43.38-PM.png" alt="Noah Lee Image">
+            Noah Lee
+        </button>
+    </li>
+</ul>
+
+
+    <script>
+        function showAlertNote(candidateName, candidateImageURL) {
+            // Retrieve the current vote count for the candidate from localStorage
+            const currentVoteCount = parseInt(localStorage.getItem(candidateName)) || 0;
+
+            // Increment the vote count by 1
+            const newVoteCount = currentVoteCount + 1;
+
+            // Store the updated vote count in localStorage
+            localStorage.setItem(candidateName, newVoteCount);
+            
+            // Store the candidate's image URL in localStorage
+            localStorage.setItem(`${candidateName}-image`, candidateImageURL);
+
+            // Redirect to data.html
+            window.location.href = 'data.html';
+        }
+    </script>
+
+</body>
+
+</html>

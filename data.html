@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Vote Results</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: lightcoral;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .cartoon {
+            width: 23%;
+            padding: 20px;
+            background-color: #f1f1f1;
+            text-align: center;
+            margin: 10px;
+        }
+
+        .bar {
+            height: 20px;
+            border: 2px black solid;
+            background-color: #007bff;
+        }
+
+        p {
+            margin-top: 10px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1><a href="election.html">home</a>/ Data</h1><br><br>
+    <div class="container">
+        <!-- Loop through all candidates in localStorage and display their information -->
+        <script>
+            for (let i = 0; i < localStorage.length; i++) {
+                const candidateName = localStorage.key(i);
+                const voteCount = localStorage.getItem(candidateName);
+
+                // Check if the item represents a candidate (based on the vote count)
+                if (!isNaN(voteCount)) {
+                    const cartoonDiv = document.createElement('div');
+                    cartoonDiv.className = 'cartoon';
+
+                    const candidateImage = document.createElement('img');
+                    candidateImage.src = localStorage.getItem(`${candidateName}-image`);
+                    candidateImage.alt = `Candidate Image`;
+
+                    const candidateNameParagraph = document.createElement('p');
+                    candidateNameParagraph.textContent = `Name: ${candidateName}`;
+
+                    const voteCountParagraph = document.createElement('p');
+                    voteCountParagraph.textContent = `Votes: ${voteCount || 0}`;
+
+                    cartoonDiv.appendChild(candidateImage);
+                    cartoonDiv.appendChild(candidateNameParagraph);
+                    cartoonDiv.appendChild(voteCountParagraph);
+
+                    document.querySelector('.container').appendChild(cartoonDiv);
+                }
+            }
+        </script>
+    </div>
+</body>
+
+</html>
